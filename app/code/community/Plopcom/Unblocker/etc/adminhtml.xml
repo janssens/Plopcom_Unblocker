@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+        <!--
+        -->
+<config>
+    <menu>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <plopcom_unblocker>
+                                <title>plopcom unblocker</title>
+                            </plopcom_unblocker>
+                        </children>
+                    </sales>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

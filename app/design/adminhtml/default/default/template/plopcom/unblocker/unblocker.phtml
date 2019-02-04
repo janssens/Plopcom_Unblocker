@@ -1,0 +1,102 @@
+<?php $_invoice_helper = Mage::helper('unblocker/invoice'); ?>
+<?php $_shipment_helper = Mage::helper('unblocker/shipment'); ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('sales')->__('Order'); ?></h4>
+    </div>
+    <div class="fieldset fieldset-wide">
+        <?php echo $this->getItemsHtml() ?>
+    </div>
+    <?php if ($this->getOrder()->getState()!=Mage::helper('unblocker/order')->realOrderState($this->getOrder())) : ?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4>Actions</h4>
+            </div>
+            <fieldset>
+                <span style="color: red">
+                    /!\ <?php echo $this->__('state should be %s (but is %s)',Mage::helper('unblocker/order')->realOrderState($this->getOrder()),$this->getOrder()->getState()); ?>
+                </span>
+                <form action="<?php echo $this->getUrl('adminhtml/Unblockeradmin_Index/changeState'); ?>" method="post">
+                    <input name="form_key" id="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+                    <input type="hidden" name="order_id" value="<?php echo $this->getOrder()->getId() ?>">
+                    <input type="hidden" name="state" value="<?php echo Mage::helper('unblocker/order')->realOrderState($this->getOrder()) ?>">
+                    <table class="form-list" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td class="">
+                                    <label class="normal" for="status"><?php echo Mage::helper('unblocker')->__('New status') ?></label><br/>
+                                </td>
+                                <td>
+                                    <select name="status" class="select">
+                                        <option value=""></option>
+                                        <?php foreach ($this->getStatuses(Mage::helper('unblocker/order')->realOrderState($this->getOrder())) as $_code=>$_label): ?>
+                                            <option value="<?php echo $_code ?>"><?php echo $_label ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label class="normal" for="notify">
+                                        <?php echo Mage::helper('unblocker')->__('Notify customer for change') ?>
+                                    </label>
+                                    <input type="checkbox" name="notify" value="1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label class="normal" for="dispatch">
+                                        <?php echo Mage::helper('unblocker')->__('Dispatch %s','sales_order_status_after') ?>
+                                    </label>
+                                    <input type="checkbox" name="dispatch" value="1" checked="checked">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button title="<?php echo $this->__('Change state and status'); ?>" class="scalable" type="submit">
+                                        <span><span><span><?php echo $this->__('Change state and status'); ?></span></span></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </fieldset>
+        </div>
+    <?php endif; ?>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('sales')->__('Shipments'); ?></h4>
+    </div>
+    <div class="fieldset fieldset-wide">
+        <?php foreach ($this->getOrder()->getShipmentsCollection() as $shipment) : ?>
+            <h5>#<?php echo $shipment->getIncrementId(); ?> <?php echo $shipment->getCreatedAt(); ?></h5>
+            <?php echo $this->getShipmentHtml($shipment) ?>
+            <?php if (!$_shipment_helper->gridItemExist($shipment)): ?>
+                <button title="<?php echo $this->__('generate missing grid item'); ?>" type="button" class="scalable "
+                        onclick="setLocation('<?php
+                        echo $this->getUrl('adminhtml/Unblockeradmin_Index/updateShipmentGridRecords', array('entity_id' => $shipment->getId()));
+                        ?>')" style="">
+                    <span><span><span><?php echo $this->__('generate missing grid item'); ?></span></span></span>
+                </button>
+             <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('sales')->__('Invoices'); ?></h4>
+    </div>
+    <div class="fieldset fieldset-wide">
+        Tous les articles <?php echo ($_invoice_helper->areAllItemsInvoiced($this->getOrder())) ? 'sont' : 'ne sont pas'?> facturés.
+        <?php if (!$_invoice_helper->areAllItemsInvoiced($this->getOrder()) and $this->getOrder()->getState() == Mage_Sales_Model_Order::STATE_COMPLETE) : ?>
+            <button title="<?php echo $this->__('force invoice'); ?>" type="button" class="scalable "
+                    onclick="confirmSetLocation('<?php echo $this->__('force invoice ?'); ?>','<?php
+                    echo $this->getUrl('adminhtml/Unblockeradmin_Index/forceInvoice', array('order_id' => $this->getOrder()->getId()));
+                    ?>')" style="">
+                <span><span><span><?php echo $this->__('force invoice'); ?></span></span></span>
+            </button>
+        <?php endif; ?>
+    </div>
+</div>
