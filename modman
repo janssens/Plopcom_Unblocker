@@ -1,5 +1,6 @@
 #Plopcom_Unblocker
 app/code/community/Plopcom/Unblocker                                app/code/community/Plopcom/Unblocker
+app/code/community/Plopcom/Unblocker                                app/code/community/Plopcom/Unblocker
 app/design/adminhtml/default/default/layout/plopcom_unblocker.xml   app/design/adminhtml/default/default/layout/
 app/design/adminhtml/default/default/template/plopcom/unblocker     app/design/adminhtml/default/default/template/plopcom/unblocker
 app/etc/modules/*.xml                                               app/etc/modules/
