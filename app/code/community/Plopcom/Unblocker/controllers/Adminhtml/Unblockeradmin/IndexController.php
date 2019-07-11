@@ -29,6 +29,26 @@ class Plopcom_Unblocker_Adminhtml_Unblockeradmin_IndexController extends Mage_Ad
     /**
      * @return Mage_Adminhtml_Controller_Action
      */
+    public function uncancelItemAction()
+    {
+
+        if ($data = $this->getRequest()->getParams()) {
+            /** @var Mage_Sales_Model_Order_Item $item */
+            $item = Mage::getModel('sales/order_item')->load($this->getRequest()->getParam('item_id'));
+            $_order_helper = Mage::helper('unblocker/order');
+            if ($_order_helper->isCanceled($item)){
+                $item->setQtyCanceled(0)->save();
+                Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Item cancel qty set to 0'));
+            }
+            return $this->_redirect('adminhtml/sales_order/view', array('order_id' => $item->getOrderId(), 'showTab' => 'unblocker'));
+        } else {
+            return $this->_redirect('adminhtml/sales_order/index');
+        }
+    }
+
+    /**
+     * @return Mage_Adminhtml_Controller_Action
+     */
     public function fixOrderItemInvoicedQtyAction()
     {
         if ($data = $this->getRequest()->getParams()) {

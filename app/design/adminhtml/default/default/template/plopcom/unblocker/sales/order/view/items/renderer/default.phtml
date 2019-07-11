@@ -272,5 +272,13 @@
                 <span><span><span><?php echo $this->__('fix shipped qty'); ?></span></span></span>
             </button>
         <?php endif; ?>
+        <?php if ($_order_helper->isCanceled($_item)) : ?>
+            <button title="<?php echo $this->__('undo cancel'); ?>" type="button" class="scalable "
+                    onclick="confirmSetLocation('<?php echo $this->__('undo cancel ?'); ?>','<?php
+                    echo $this->getUrl('adminhtml/Unblockeradmin_Index/uncancelItem', array('item_id' => $_item->getId()));
+                    ?>')" style="">
+                <span><span><span><?php echo $this->__('undo cancel'); ?></span></span></span>
+            </button>
+        <?php endif; ?>
     </td>
 </tr>
