@@ -15,33 +15,25 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <devtoolbar translate="label">
-                    <label>Dev Toolbar</label>
-                    <comment></comment>
-                    <sort_order>1</sort_order>
+                <unblocker translate="label" module="unblocker">
+                    <label>Unblocker Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <enable translate="label tooltip comment">
-                            <label>Afficher</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <tooltip>afficher ou non</tooltip>
+                        <allowed_users translate="label" module="unblocker">
+                            <label>Allowed Users</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>unblocker/user</source_model>
+                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </enable>
-                        <iplist translate="label tooltip comment">
-                            <label>list of authorized ip</label>
-                            <frontend_type>text</frontend_type>
-                            <tooltip>comma separated. (127.0.0.1 is already added)</tooltip>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </iplist>
+                        </allowed_users>
                     </fields>
-                </devtoolbar>
+                </unblocker>
             </groups>
         </plopcom_general>
     </sections>
