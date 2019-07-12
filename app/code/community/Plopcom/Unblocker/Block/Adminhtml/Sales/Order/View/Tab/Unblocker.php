@@ -26,7 +26,7 @@ class Plopcom_Unblocker_Block_Adminhtml_Sales_Order_View_Tab_Unblocker
     {
         if(!Mage::getSingleton('admin/session')->isAllowed('admin/sales/plopcom_unblocker'))
             return false;
-        $users_ids = Mage::getStoreConfig('plopcom/unblocker/allowed_users',$this->getOrder()->getStore());
+        $users_ids = Mage::getStoreConfig(Plopcom_Unblocker_Helper_Data::CONF_ALLOWED_USERS,$this->getOrder()->getStore());
         if (in_array(Mage::getSingleton('admin/session')->getUser()->getId(),explode(',',$users_ids))){
             return true;
         }
