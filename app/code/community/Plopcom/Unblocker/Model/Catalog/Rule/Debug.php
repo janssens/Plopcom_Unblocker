@@ -6,6 +6,8 @@ class Plopcom_Unblocker_Model_Catalog_Rule_Debug extends Mage_CatalogRule_Model_
     {
 
         $websiteIds = $rule->getWebsiteIds();
+        if (!is_array($websiteIds))
+            $websiteIds = array($websiteIds);
         $write = $this->_getWriteAdapter();
         $customerGroupIds = $rule->getCustomerGroupIds();
 
