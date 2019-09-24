@@ -15,14 +15,14 @@
                         <children>
                             <config>
                                 <children>
-                                    <plopcom>
-                                        <title>Plopcom</title>
+                                    <plopcom_general>
+                                        <title>Plopcom general</title>
                                         <children>
                                             <plopcom_unblocker>
                                                 <title>plopcom unblocker</title>
                                             </plopcom_unblocker>
                                         </children>
-                                    </plopcom>
+                                    </plopcom_general>
                                 </children>
                             </config>
                         </children>

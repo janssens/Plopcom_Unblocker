@@ -9,7 +9,6 @@
         <plopcom_general translate="label" module="unblocker">
             <label>General settings</label>
             <tab>plopcom</tab>
-            <frontend_type>text</frontend_type>
             <sort_order>100</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
