@@ -11,13 +11,13 @@
             </all>
             <admin>
                 <children>
-                    <sales>
+                    <plopcom>
                         <children>
                             <plopcom_unblocker>
                                 <title>plopcom unblocker</title>
                             </plopcom_unblocker>
                         </children>
-                    </sales>
+                    </plopcom>
                 </children>
             </admin>
         </resources>
