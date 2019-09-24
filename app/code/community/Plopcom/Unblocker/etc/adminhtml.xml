@@ -11,13 +11,22 @@
             </all>
             <admin>
                 <children>
-                    <plopcom>
+                    <system>
                         <children>
-                            <plopcom_unblocker>
-                                <title>plopcom unblocker</title>
-                            </plopcom_unblocker>
+                            <config>
+                                <children>
+                                    <plopcom>
+                                        <title>Plopcom</title>
+                                        <children>
+                                            <plopcom_unblocker>
+                                                <title>plopcom unblocker</title>
+                                            </plopcom_unblocker>
+                                        </children>
+                                    </plopcom>
+                                </children>
+                            </config>
                         </children>
-                    </plopcom>
+                    </system>
                 </children>
             </admin>
         </resources>
