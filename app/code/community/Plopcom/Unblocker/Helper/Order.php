@@ -71,19 +71,21 @@ class Plopcom_Unblocker_Helper_Order extends Mage_Core_Helper_Abstract {
             $order = Mage::getModel('sales/order')->load($order);
         }
         if ($order->getId()){
-            $canceled = true;
-            $complete = true;
+            $canceled = 0;
+            $complete = 0;
+            $item_count = 0;
             foreach ($order->getItemsCollection() as $item){
-                if ($complete && !$this->isComplete($item)){
-                    $complete = false;
+                if ($this->isComplete($item)){
+                    $complete++;
                 }
-                if ($canceled && !$this->isCanceled($item)){
-                    $canceled = false;
+                if ($this->isCanceled($item)){
+                    $canceled++;
                 }
+                $item_count++;
             }
-            if ($canceled)
+            if ($canceled > 0)
                 return Mage_Sales_Model_Order::STATE_CANCELED;
-            if ($complete)
+            if ($complete > 0 && $complete === $item_count)
                 return Mage_Sales_Model_Order::STATE_COMPLETE;
             return Mage_Sales_Model_Order::STATE_PROCESSING;
         }else{
