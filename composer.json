@@ -1,0 +1,13 @@
+{
+    "name": "janssens/plopcom_unblocker",
+    "description": "A Magento 1.9 module to fix command in wrong status/state or items with wrong qty (invoiced, shipped, ...)",
+    "type": "magento-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "janssens",
+            "email": "janssensgaetan@gmail.com"
+        }
+    ],
+    "require": {}
+}
