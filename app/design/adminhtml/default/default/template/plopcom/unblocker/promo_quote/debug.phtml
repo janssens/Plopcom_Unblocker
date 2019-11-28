@@ -1,0 +1,33 @@
+
+<div class="entry-edit">
+    <div class="">
+        <div id="debug_sql_queries" class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">🔧 SQLs Queries <span>&#9207;</span><span style="display: none">&#9206;</span></h4>
+        </div>
+        <fieldset id="rule_conditions_fieldset" style="display: none;">
+            <?php
+            $rule = Mage::registry('current_promo_quote_rule');
+            list ($queries,$stores) = Mage::getModel('unblocker/quote_rule_debug')->getSQL($rule);
+
+            foreach ($queries as $storeId => $query): ?>
+                <h4><?php echo "#".$storeId." ".$stores[$storeId]; ?></h4>
+                <blockquote><?php echo $query; ?></blockquote>
+                <br>
+            <?php endforeach; ?>
+        </fieldset>
+    </div>
+</div>
+<script>
+    jQuery(function () {
+        jQuery('#debug_sql_queries').click(function () {
+            jQuery(this).toggleClass('open');
+            jQuery(this).parent().find('fieldset').toggle();
+            jQuery(this).find('span').toggle();
+        });
+    });
+</script>
+<style>
+    #debug_sql_queries{
+        cursor: pointer;
+    }
+</style>
