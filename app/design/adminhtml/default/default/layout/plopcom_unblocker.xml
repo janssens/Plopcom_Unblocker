@@ -28,10 +28,4 @@
             <block type="core/template" name="form_after" template="plopcom/unblocker/promo_rules/debug.phtml"></block>
         </reference>
     </adminhtml_promo_catalog_edit>
-    <adminhtml_promo_quote_edit>
-        <reference name="promo_quote_edit_tab_conditions">
-            <block type="core/template" name="form_after" template="plopcom/unblocker/promo_quote/debug.phtml"></block>
-        </reference>
-    </adminhtml_promo_quote_edit>
-
 </layout>
