@@ -12,5 +12,10 @@
     "require": {
        "php": ">=5.4",
        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0"
+        }
     }
 }
